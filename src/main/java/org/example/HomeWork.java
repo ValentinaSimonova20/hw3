@@ -1,6 +1,8 @@
 package org.example;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class HomeWork {
@@ -24,8 +26,25 @@ public class HomeWork {
      * Сигнатуру метода не меняем
      */
     public String findMaxSubstring(String str) {
-        //TODO реализовать метод
-        return null;
+        Map<Character, Integer> indexesOfLetters = new HashMap<>();
+        int maxLength = 0;
+        int currentLength = 0;
+        String result = "";
+        for(int i = 0; i < str.length(); i++) {
+            char currentChar = str.charAt(i);
+            int savedIndex = indexesOfLetters.getOrDefault(currentChar, -1);
+            if(savedIndex != -1 && (savedIndex > i - currentLength)) {
+                currentLength = 1;
+            } else {
+                currentLength++;
+            }
+            if(currentLength > maxLength) {
+                maxLength = currentLength;
+            }
+            indexesOfLetters.put(currentChar, i);
+        }
+        System.out.println(maxLength);
+        return result;
     }
 
 
