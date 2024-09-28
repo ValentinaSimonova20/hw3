@@ -27,23 +27,24 @@ public class HomeWork {
      */
     public String findMaxSubstring(String str) {
         Map<Character, Integer> indexesOfLetters = new HashMap<>();
-        int maxLength = 0;
-        int currentLength = 0;
+        int startIndex = 0;
+        int endIndex = 0;
         String result = "";
-        for(int i = 0; i < str.length(); i++) {
-            char currentChar = str.charAt(i);
+        while (endIndex != str.length()) {
+            char currentChar = str.charAt(endIndex);
             int savedIndex = indexesOfLetters.getOrDefault(currentChar, -1);
-            if(savedIndex != -1 && (savedIndex > i - currentLength)) {
-                currentLength = 1;
+            if(savedIndex == -1 || savedIndex <= startIndex) {
+                endIndex++;
             } else {
-                currentLength++;
+                startIndex = savedIndex;
+                endIndex = savedIndex;
             }
-            if(currentLength > maxLength) {
-                maxLength = currentLength;
+            String currentString = str.substring(startIndex, endIndex);
+            if(result.length() < currentString.length()) {
+                result = currentString;
             }
-            indexesOfLetters.put(currentChar, i);
+            indexesOfLetters.put(currentChar, endIndex);
         }
-        System.out.println(maxLength);
         return result;
     }
 
