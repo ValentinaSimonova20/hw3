@@ -1,8 +1,6 @@
 package org.example;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class HomeWork {
@@ -60,7 +58,7 @@ public class HomeWork {
      * @see <a href="https://www.codewars.com/kata/545cedaa9943f7fe7b000048">https://www.codewars.com/kata/545cedaa9943f7fe7b000048</a>
      */
     public boolean check(String sentence){
-        return false;
+        return sentence.chars().map(Character::toLowerCase).filter(Character::isLetter).distinct().count() == 26;
     }
 
 }
